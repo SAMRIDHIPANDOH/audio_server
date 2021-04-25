@@ -1,0 +1,36 @@
+in terminal  run command cd audio_server
+add application name 'audio_file' in settings.py
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'audio_file',
+    'crispy_forms'
+]
+
+
+add database details in settings.py
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'database_name',
+        'USER':'user_name',
+        'PASSWORD':'password',
+        'HOST':'host_name'
+
+    }
+}
+
+
+
+run command ----> python manage.py makemigrations
+                  python manage.py migrate
+                  python manage.py runserver
+in web browser open url to startapp: http://127.0.0.1:8000/audio
+
+
