@@ -1,0 +1,23 @@
+{% extends "audio_file/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Audio Type: {{key}}</h3>
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+
+    {{form|crispy}}
+
+    <div class="row">
+        <div class="col-md-8">
+          <button type="submit" class="btn btn-sucess btn-block btn-lg" ><i class="fas fa-database"></i>Submit</button>
+        </div>
+        <div class="col-md-8">
+            <a href="{% url 'get_api' key %}" class="btn btn-sucess btn-block btn-lg"><i class="fas fa-database"></i>
+                Audio List
+            </a>
+
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

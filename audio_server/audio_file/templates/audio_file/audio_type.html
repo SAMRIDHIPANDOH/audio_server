@@ -1,0 +1,24 @@
+{% extends "audio_file/base.html"%}
+{% block content%}
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+    <tr>
+
+        <td class="lead font-italic"><h3>Select Audio Type :</h3></td>
+    </tr>
+    </thead>
+    <tbody>
+     {% for type in audio_type %}
+
+       <tr>
+           <td>{{type.type}}</td>
+           <td>
+               <a href="{% url 'create_api' type.type %}" class="btn text-secondary px-0">
+                   <i class="far fa-hand-pointer fa-lg"></i>
+               </a>
+
+       </tr>
+     {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

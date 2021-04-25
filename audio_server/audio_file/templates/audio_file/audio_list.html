@@ -1,0 +1,141 @@
+{% extends "audio_file/base.html"%}
+{% load crispy_forms_tags %}
+{% block content%}
+<h3>List for audio type: {{key}}</h3>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+    {% if key == 'song' %}
+    <tr>
+        <td >Name</td>
+        <td>Duration</td>
+        <td>Uplaod Time</td>
+         <td>
+            <a href="{% url 'audio_type_select' %}" class="btn btn-outline-success">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+        </td>
+    </tr>
+    {% elif key == 'podcast' %}
+      <tr>
+        <td >Name</td>
+        <td>Duration</td>
+        <td>Upload Time</td>
+        <td>Host</td>
+         <td>Participants</td>
+          <td>
+            <a href="{% url 'audio_type_select'  %}" class="btn btn-outline-success">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+        </td>
+
+    </tr>
+
+
+    {% elif key == 'audiobook' %}
+    <tr>
+        <td >Title</td>
+        <td>Author</td>
+        <td>Narrator</td>
+        <td>Duration</td>
+         <td>Upload Time</td>
+           <td>
+            <a href="{% url 'audio_type_select' %}" class="btn btn-outline-success">
+                <i class="fas fa-plus"></i> Add New
+            </a>
+        </td>
+
+    </tr>
+
+    {% endif %}
+    </thead>
+    <tbody>
+    {% if key == 'song'  %}
+    {% for audio in audio_list %}
+
+    <tr>
+        <td>{{audio.name}}</td>
+        <td>{{audio.duration}}</td>
+        <td>{{audio.upload_time}}</td>
+        <td>
+            <a href="{% url 'update_api' key audio.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            <form action="{% url 'delete_api' key audio.id%}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    <i class="far fa-trash-alt fa-lg text-danger float-right">
+
+                    </i>
+
+                </button>
+            </form>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+    {% elif key == 'podcast' %}
+    {% for audio in audio_list %}
+
+    <tr>
+        <td>{{audio.name}}</td>
+        <td>{{audio.duration}}</td>
+        <td>{{audio.upload_time}}</td>
+        <td>{{audio.host}}</td>
+        <td>{{audio.participants}}</td>
+        <td>
+            <a href="{% url 'update_api' key audio.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            <form action="{% url 'delete_api' key audio.id%}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    <i class="far fa-trash-alt fa-lg text-danger float-right">
+
+                    </i>
+
+                </button>
+            </form>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+    {% elif key == 'audiobook' %}
+    {% for audio in audio_list %}
+
+    <tr>
+        <td>{{audio.title}}</td>
+        <td>{{audio.author}}</td>
+        <td>{{audio.narrator}}</td>
+        <td>{{audio.duration}}</td>
+        <td>{{audio.upload_time}}</td>
+        <td>
+            <a href="{% url 'update_api' key audio.id %}" class="btn text-secondary px-0">
+                <i class="far fa-edit fa-lg"></i>
+            </a>
+            <form action="{% url 'delete_api' key audio.id%}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn">
+                    <i class="far fa-trash-alt fa-lg text-danger float-right">
+
+                    </i>
+
+                </button>
+            </form>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+
+
+
+
+
+    </tbody>
+   {% endif %}
+</table>
+
+
+{% endblock content %}
