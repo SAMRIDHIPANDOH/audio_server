@@ -27,6 +27,9 @@ DATABASES = {
 }
 
 
+in postgres(pgadmin4) create database .
+
+
 
 run command ----> python manage.py makemigrations
                   python manage.py migrate
